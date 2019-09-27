@@ -1,0 +1,11 @@
+# TO BUILD
+git clone git@github.com:mozilla/rr.git
+cd rr
+./configure
+make -j
+
+# TO USE
+rr record -n <binary> [<arg1> ...]
+    # -n means no syscall buffer, makes it easier to see what's happening when single stepping
+
+rr replay [~/.local/share/rr/<replay_dir_you_wanna_see>]

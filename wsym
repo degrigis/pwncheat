@@ -1,0 +1,18 @@
+# WHAT'S THIS
+Adds symbols to an ELF file. Sort of the opposite of strip.
+
+# TO SETUP 
+git clone https://github.com/wapiflapi/wsym
+
+
+# TO USE 
+python wsym.py -f ./symbols ./binary.bin ./binary_sym.bin
+    # -f read the symbols from a file formatted in this way:
+    # 
+    # 000000012c symbol_name 
+    # 000000055b symbol_name2 
+
+python wsym.py -i ./symbols.map ./binary.bin ./binary_sym.bin
+    # -i read the symbols from an IDA .map file ( local and segments )
+    # to export the .map from IDA:
+    # File -> Produce -> .MAP file 

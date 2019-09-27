@@ -1,0 +1,2 @@
+# quickly patch alarm and sleep in a file
+cat upload_center | sed 's/sleep/isinf/g' > upload_center.patched

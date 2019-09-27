@@ -1,0 +1,47 @@
+
+
+# Fix permission error to connect to docker daemon
+# issue this command and reboot the machine 
+sudo usermod -a -G docker $USER
+
+
+# Example of a DockerFile 
+from ubuntu:latest
+copy example_1_nonet.bin /
+copy libc.so.6 /
+copy ld-linux-x86-64.so.2 /
+
+entrypoint [ "/ld-linux-x86-64.so.2", "--library-path", "/", "/example_1_nonet.bin", "secret_of_life", "supersecretpassword" ]
+
+
+# Build a docker container given a DockerFile 
+# give the folder that contains the DockerFile and all the binaries 
+# you need. 
+# This will give you a docker container id -> f.i. be3ced322578
+docker build example_1_nonet/
+
+
+# List all images 
+docker image ls 
+
+# List all running containers 
+docker container ls 
+
+# Run a container 
+docker run c185416be9f3
+
+# Run a container interactively
+docker run -it c185416be9f3 
+
+# Run a container and spawn a shell inside it 
+# Remember to remove any entry_point in the DockerFile 
+docker run -it c185416be9f3 bash
+
+# Execute a command in a running container 
+docker exec -it "id of running container" bash
+
+# Remove a specific image 
+docker rmi "id of image"
+
+# Remove all images 
+docker system prune

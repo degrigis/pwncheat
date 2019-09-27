@@ -1,0 +1,36 @@
+
+# enable logs of data received and sent 
+context.log_level = "DEBUG"
+
+# create a process 
+r = process("./baby_tcache")
+
+# create a remote process
+conn = remote(sys.argv[1], sys.argv[2])
+
+# send input to process
+r.sendline("1")
+
+# read until a string 
+r.readuntil("Your choice: ")
+
+# attach gdb and set breakpoint at that address
+gdb.attach(r,'b* 0x0000555555554C6B')
+
+# get an interactive session with gdb 
+r.interactive() 
+
+# crafting shellcode assembly 
+assembly = shellcraft.i386.linux.readfile("./flag", 1) + shellcraft.i386.linux.exit()
+
+# converting asm to hex
+shellcode = asm(assembly, arch = 'i386', os = 'linux')
+
+# getting a formatted p32 word 
+stack_address_leak = output.split("\n")[2].split(" ")[-2]  # getting the string 
+stack_address_leak = int(stack_address_leak) # getting the integer associated 
+p32(stack_address_leak) # format according to the architecture in the context 
+
+
+
+
