@@ -31,6 +31,15 @@ stack_address_leak = output.split("\n")[2].split(" ")[-2]  # getting the string
 stack_address_leak = int(stack_address_leak) # getting the integer associated 
 p32(stack_address_leak) # format according to the architecture in the context 
 
-
-
+# generating dummy elf given shellcode 
+In [2]: context.arch = 'amd64'
+In [3]: e = ELF.from_bytes(open('./check4', 'rb').read())
+[*] '/tmp/pwn-asm-4eWYc3/step3-elf'
+    Arch:     amd64-64-little
+    RELRO:    No RELRO
+    Stack:    No canary found
+    NX:       NX disabled
+    PIE:      No PIE (0x600000)
+    RWX:      Has RWX segments
+In [4]: e.save('stage4')
 
