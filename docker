@@ -45,3 +45,9 @@ docker rmi "id of image"
 
 # Remove all images 
 docker system prune
+
+# Commit the work in a container 
+# the commit will create a new image that you can see thourgh the `docker image ls` command
+docker commit <commit_id>
+
+
