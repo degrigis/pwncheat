@@ -50,4 +50,5 @@ docker system prune
 # the commit will create a new image that you can see thourgh the `docker image ls` command
 docker commit <commit_id>
 
-
+# Spawn a new docker with ubuntu:16.04
+docker run --rm -it ubuntu:16.04

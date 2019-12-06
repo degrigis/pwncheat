@@ -5,8 +5,10 @@ cat upload_center | sed 's/alarm/isinf/g' > upload_center.patched
 you can kill a scanf by sending NULL bytes.
 
 # fgets
-fgets reads until EOF or newline, you can exploit it to inject more stuff in memory if you need.
+fgets reads until EOF or newline, you can exploit it to inject NULL byte in memory if you need.
 
+# jmp esp
+jmp esp is a useful gadget!
 
 # strtol
-if you give strtol a negative number it will convert it in 0xff...
+if you give strtol a negative number it will convert it in 0xff{..}
